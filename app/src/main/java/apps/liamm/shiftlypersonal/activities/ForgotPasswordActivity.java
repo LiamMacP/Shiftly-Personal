@@ -1,7 +1,5 @@
 package apps.liamm.shiftlypersonal.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import apps.liamm.shiftlypersonal.R;

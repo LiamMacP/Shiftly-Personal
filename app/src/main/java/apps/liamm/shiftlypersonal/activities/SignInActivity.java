@@ -20,18 +20,17 @@ import java.util.Objects;
 
 import apps.liamm.shiftlypersonal.R;
 
+import static android.view.WindowManager.LayoutParams;
 import static apps.liamm.shiftlypersonal.helpers.FormValidation.IsValidEmail;
 import static apps.liamm.shiftlypersonal.helpers.FormValidation.IsValidPassword;
 
 public class SignInActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = SignInActivity.class.getSimpleName();
-
-    private TextInputEditText mEmailEditText;
-    private TextInputEditText mPasswordEditView;
     @VisibleForTesting
     protected ProgressBar mProgressBar;
-
+    private TextInputEditText mEmailEditText;
+    private TextInputEditText mPasswordEditView;
     private FirebaseAuth mAuth;
 
     @Override
@@ -57,7 +56,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     protected void onStart() {
         super.onStart();
 
-        showProgressBar();
+        showSignInUi();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
@@ -66,15 +65,26 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
             startActivity(dashboardIntent);
         }
 
-        hideProgressBar();
+        clearSignInUi();
     }
 
-    private void showProgressBar() {
+    /**
+     * Handles the showing of the progress bar when the application is attempting to sign in.
+     * Stops the user from being able to touch the screen during this process.
+     */
+    private void showSignInUi() {
         mProgressBar.setVisibility(View.VISIBLE);
+        getWindow().setFlags(LayoutParams.FLAG_NOT_TOUCHABLE,
+                LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
-    private void hideProgressBar() {
+    /**
+     * Handles the hiding of the progress bar when the application has finished trying to sign in.
+     * Allows the user to touch the screen after attempting to sign in.during this process.
+     */
+    private void clearSignInUi() {
         mProgressBar.setVisibility(View.GONE);
+        getWindow().clearFlags(LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
     /**
@@ -147,19 +157,19 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
         if (checkEmail(emailAddress)
                 && checkPassword(password)) {
-            showProgressBar();
+            showSignInUi();
 
             mAuth.signInWithEmailAndPassword(emailAddress, password).addOnSuccessListener(
                     authResult -> {
-                        hideProgressBar();
+                        clearSignInUi();
                         Intent dashboardIntent
-                            = new Intent(SignInActivity.this, DashboardActivity.class);
+                                = new Intent(SignInActivity.this, DashboardActivity.class);
                         startActivity(dashboardIntent);
                     })
                     .addOnFailureListener(e -> {
                         Log.e(TAG, "signIn:Failed to sign in. ", e);
 
-                        hideProgressBar();
+                        clearSignInUi();
                         Toast.makeText(this,
                                 getString(R.string.signin_authenticationfailed),
                                 Toast.LENGTH_SHORT)

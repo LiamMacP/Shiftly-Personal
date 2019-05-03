@@ -8,6 +8,7 @@ import androidx.test.espresso.IdlingResource;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +27,7 @@ import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static apps.liamm.shiftlypersonal.activities.CustomHamcrestMatchers.*;
 import static org.hamcrest.CoreMatchers.allOf;
 
 @LargeTest
@@ -55,7 +57,7 @@ public class SignInTest {
     }
 
     @Test
-    public void failedSignInTest() {
+    public void testSignIn_Failed() {
         String email = "test@example.com";
         String password = "aB#3aaab";
 
@@ -100,6 +102,168 @@ public class SignInTest {
         appCompatButton.perform(click());
 
         assert (FirebaseAuth.getInstance().getCurrentUser() != null);
+
+        signOutIfPossible();
+    }
+
+    @Test
+    public void testSignIn_EmailErrorMessage() {
+        String email = "testexample.com";
+        String password = "aB#3aaaa";
+
+        // Make sure we're signed out
+        signOutIfPossible();
+
+        // Enter email
+        enterEmail(email);
+
+        // Enter password
+        enterPassword(password);
+
+        // Click sign in
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.signin_request_button), withText(R.string.signin_request_button),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
+        onView(allOf(withId(R.id.signin_email_edittext),
+                hasTextInputLayoutHintText(InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.signin_invalid_emailaddress)),
+                isDisplayed()));
+
+        signOutIfPossible();
+    }
+
+    @Test
+    public void testSignIn_PasswordNoNumberErrorMessage() {
+        String email = "test@example.com";
+        String password = "a#eeSddd";
+
+        // Make sure we're signed out
+        signOutIfPossible();
+
+        // Enter email
+        enterEmail(email);
+
+        // Enter password
+        enterPassword(password);
+
+        // Click sign in
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.signin_request_button), withText(R.string.signin_request_button),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
+        onView(allOf(withId(R.id.signin_password_edittext),
+                hasTextInputLayoutHintText(InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.signin_invalid_password)),
+                isDisplayed()));
+
+        signOutIfPossible();
+    }
+
+    @Test
+    public void testSignIn_PasswordToSmallErrorMessage() {
+        String email = "test@example.com";
+        String password = "a#3Sddd";
+
+        // Make sure we're signed out
+        signOutIfPossible();
+
+        // Enter email
+        enterEmail(email);
+
+        // Enter password
+        enterPassword(password);
+
+        // Click sign in
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.signin_request_button), withText(R.string.signin_request_button),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
+        onView(allOf(withId(R.id.signin_password_edittext),
+                hasTextInputLayoutHintText(InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.signin_invalid_password)),
+                isDisplayed()));
+
+        signOutIfPossible();
+    }
+
+    @Test
+    public void testSignIn_PasswordNoUppercaseErrorMessage() {
+        String email = "test@example.com";
+        String password = "a#3ddddd";
+
+        // Make sure we're signed out
+        signOutIfPossible();
+
+        // Enter email
+        enterEmail(email);
+
+        // Enter password
+        enterPassword(password);
+
+        // Click sign in
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.signin_request_button), withText(R.string.signin_request_button),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
+        onView(allOf(withId(R.id.signin_password_edittext),
+                hasTextInputLayoutHintText(InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.signin_invalid_password)),
+                isDisplayed()));
+
+        signOutIfPossible();
+    }
+
+    @Test
+    public void testSignIn_PasswordNoLowercaseErrorMessage() {
+        String email = "test@example.com";
+        String password = "#3SDDDDD";
+
+        // Make sure we're signed out
+        signOutIfPossible();
+
+        // Enter email
+        enterEmail(email);
+
+        // Enter password
+        enterPassword(password);
+
+        // Click sign in
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.signin_request_button), withText(R.string.signin_request_button),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
+        onView(allOf(withId(R.id.signin_password_edittext),
+                hasTextInputLayoutHintText(InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.signin_invalid_password)),
+                isDisplayed()));
+
+        signOutIfPossible();
+    }
+
+    @Test
+    public void testSignIn_PasswordNoSymbolErrorMessage() {
+        String email = "test@example.com";
+        String password = "d3SDDDDD";
+
+        // Make sure we're signed out
+        signOutIfPossible();
+
+        // Enter email
+        enterEmail(email);
+
+        // Enter password
+        enterPassword(password);
+
+        // Click sign in
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.signin_request_button), withText(R.string.signin_request_button),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
+        onView(allOf(withId(R.id.signin_password_edittext),
+                hasTextInputLayoutHintText(InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.signin_invalid_password)),
+                isDisplayed()));
 
         signOutIfPossible();
     }
