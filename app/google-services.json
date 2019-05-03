@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "626243454093",
+    "firebase_url": "https://shiftly-personal.firebaseio.com",
+    "project_id": "shiftly-personal",
+    "storage_bucket": "shiftly-personal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626243454093:android:956b1481944af292",
+        "android_client_info": {
+          "package_name": "apps.liamm.shiftlypersonal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "626243454093-ardjc6402aabb4o0dh1phfbpa96ggqdc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCckgQWtwWgOgdg2q82LleX-dzLZ2D-pzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "626243454093-ardjc6402aabb4o0dh1phfbpa96ggqdc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
