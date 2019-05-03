@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Shiftly Personal</string>
+    <string name="app_name" translatable="false">Shiftly</string>
+    <string name="app_short_description">Time management made simple…</string>
+
+    <!-- SIGN IN ACTIVITY -->
+    <string name="signin_email_edittext">Email address</string>
+    <string name="signin_password_edittext">Password</string>
+    <string name="signin_request_button">Sign In</string>
+    <string name="signin_signup_button">Sign Up</string>
+    <string name="signin_invalid_emailaddress">Please enter a valid email address.</string>
+    <string name="signin_invalid_password">Please enter a valid password.</string>
+    <string name="signin_forgotpassword">Forgot your password?</string>
+    <string name="signin_authenticationfailed">Failed to sign in, please try again later.</string>
 </resources>
