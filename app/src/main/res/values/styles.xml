@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorPrimaryLight</item>
     </style>
 
-    <style name="AppTheme.SignIn.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimaryLight</item>
@@ -16,7 +16,10 @@
 
     <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:paddingBottom">8dp</item>
+    </style>
 
+    <style name="MaterialButton.Inverted" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">#BBBBBB</item>
     </style>
 
 </resources>

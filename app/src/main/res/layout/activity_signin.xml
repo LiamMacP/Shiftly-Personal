@@ -1,53 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignInActivity"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".activities.SignInActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/signin_signup_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:orientation="vertical"
-            android:background="@color/colorPrimaryDark">
+            android:layout_height="280dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="160dp"
                 android:layout_marginStart="48dp"
                 android:layout_marginEnd="48dp"
                 android:maxLines="1"
                 android:text="@string/app_name"
                 android:textColor="@color/white"
-                android:textAlignment="center"
-                android:textSize="64sp" />
+                android:textSize="64sp"
+                app:layout_constraintBottom_toTopOf="@id/signin_shortdescription_textview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/signin_shortdescription_textview"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:layout_marginEnd="48dp"
+                android:layout_marginBottom="24dp"
                 android:maxLines="1"
                 android:text="@string/app_short_description"
                 android:textColor="@color/white"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginStart="48dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="48dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signin_email_edittext"
                 android:layout_width="match_parent"
@@ -63,8 +77,8 @@
             style="@style/TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="48dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -78,17 +92,68 @@
                 tools:targetApi="o" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/signin_request_button"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="48dp"
             android:layout_marginEnd="48dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:text="@string/signin_request_button"/>
+
+            >
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/signin_signup_button"
+                style="@style/MaterialButton.Inverted"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="@string/signin_signup_button" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signin_request_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="@string/signin_request_button" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/signin_forgotpassword_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="16dp"
+            android:maxLines="1"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/signin_forgotpassword"
+            android:textAlignment="textEnd"
+            android:textSize="16sp" />
+
+        <ProgressBar
+            android:id="@+id/signin_progrsessbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal|center_vertical"/>
 
     </LinearLayout>
-
 </ScrollView>
+
+
+
+
+
+
+
