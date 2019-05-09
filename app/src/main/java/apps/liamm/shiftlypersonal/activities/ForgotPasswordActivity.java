@@ -1,10 +1,12 @@
 package apps.liamm.shiftlypersonal.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -23,9 +25,11 @@ import static apps.liamm.shiftlypersonal.helpers.FormValidation.IsValidEmail;
 
 public class ForgotPasswordActivity extends BaseActivity implements View.OnClickListener {
 
+    private TextInputEditText mEmailEditText;
+    @VisibleForTesting
+    protected TextView mStatusTextView;
     @VisibleForTesting
     protected ProgressBar mProgressBar;
-    private TextInputEditText mEmailEditText;
     private FirebaseAuth mAuth;
 
     @Override
@@ -40,12 +44,24 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         mEmailEditText = findViewById(R.id.forgotpassword_email_edittext);
+        mStatusTextView = findViewById(R.id.forgotpassword_status_textview);
         mProgressBar = findViewById(R.id.forgotpassword_progressbar);
 
-        MaterialButton requestButton = findViewById(R.id.forgotpassord_request);
+        MaterialButton requestButton = findViewById(R.id.forgotpassord_request_button);
         requestButton.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Intent intent = getIntent();
+        final String email = intent.getStringExtra("EMAIL");
+        if (email != null) {
+            mEmailEditText.setText(email);
+        }
     }
 
     @Override
@@ -55,7 +71,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
             hideKeyboard(view);
         }
 
-        if (v.getId() == R.id.forgotpassord_request) {
+        if (v.getId() == R.id.forgotpassord_request_button) {
             requestPassword();
         }
     }
@@ -65,6 +81,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
      * Stops the user from being able to touch the screen during this process.
      */
     private void showRequestUi() {
+        mStatusTextView.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
         getWindow().setFlags(LayoutParams.FLAG_NOT_TOUCHABLE,
                 LayoutParams.FLAG_NOT_TOUCHABLE);
@@ -77,6 +94,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
     private void clearRequestUi() {
         mProgressBar.setVisibility(View.GONE);
         getWindow().clearFlags(LayoutParams.FLAG_NOT_TOUCHABLE);
+        mStatusTextView.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -89,7 +107,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
      */
     private boolean checkEmail(@NonNull final String emailAddress) {
         if (!IsValidEmail(emailAddress)) {
-            mEmailEditText.setError(getString(R.string.signin_invalid_emailaddress));
+            mEmailEditText.setError(getString(R.string.invalid_emailaddress));
             return false;
         }
 
@@ -109,10 +127,10 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
 
             mAuth.sendPasswordResetEmail(emailAddress)
                     .addOnSuccessListener(command -> {
-                        Toast.makeText(this, "Successfully sent password reset email.", Toast.LENGTH_SHORT).show();
+                        mStatusTextView.setText(getText(R.string.forgotpassword_success_message));
                         clearRequestUi();
                     }).addOnFailureListener(e -> {
-                        Toast.makeText(this, "Failed to send password reset email.", Toast.LENGTH_SHORT).show();
+                        mStatusTextView.setText(getText(R.string.forgotpassword_failed_message));
                         clearRequestUi();
                     });
         }

@@ -97,7 +97,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
      */
     private boolean checkEmail(@NonNull final String emailAddress) {
         if (!IsValidEmail(emailAddress)) {
-            mEmailEditText.setError(getString(R.string.signin_invalid_emailaddress));
+            mEmailEditText.setError(getString(R.string.invalid_emailaddress));
             return false;
         }
 

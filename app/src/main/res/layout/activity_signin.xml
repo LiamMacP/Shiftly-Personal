@@ -136,7 +136,7 @@
             android:maxLines="1"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:text="@string/signin_forgotpassword"
+            android:text="@string/forgotpassword_activityname"
             android:textAlignment="textEnd"
             android:textSize="16sp" />
 
