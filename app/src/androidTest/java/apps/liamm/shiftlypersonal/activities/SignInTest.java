@@ -127,7 +127,7 @@ public class SignInTest {
         appCompatButton.perform(click());
 
         onView(allOf(withId(R.id.signin_email_edittext),
-                hasTextInputLayoutHintText(InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.signin_invalid_emailaddress)),
+                hasTextInputLayoutHintText(InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.invalid_emailaddress)),
                 isDisplayed()));
 
         signOutIfPossible();

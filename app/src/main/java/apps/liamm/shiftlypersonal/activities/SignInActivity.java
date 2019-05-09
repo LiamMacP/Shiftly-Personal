@@ -97,7 +97,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
      */
     private boolean checkEmail(@NonNull final String emailAddress) {
         if (!IsValidEmail(emailAddress)) {
-            mEmailEditText.setError(getString(R.string.signin_invalid_emailaddress));
+            mEmailEditText.setError(getString(R.string.invalid_emailaddress));
             return false;
         }
 
@@ -151,6 +151,10 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+    /**
+     * Attempt to sign into the account. Checks both the email and password for validity and then
+     * sends the details to the Firebase Authentication service.
+     */
     private void signIn() {
         final String emailAddress = Objects.requireNonNull(mEmailEditText.getText()).toString();
         final String password = Objects.requireNonNull(mPasswordEditView.getText()).toString();

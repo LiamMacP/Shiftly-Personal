@@ -7,8 +7,18 @@
     <string name="signin_password_edittext">Password</string>
     <string name="signin_request_button">Sign In</string>
     <string name="signin_signup_button">Sign Up</string>
-    <string name="signin_invalid_emailaddress">Please enter a valid email address.</string>
     <string name="signin_invalid_password">Please enter a valid password.</string>
-    <string name="signin_forgotpassword">Forgot your password?</string>
     <string name="signin_authenticationfailed">Failed to sign in, please try again later.</string>
+
+    <!-- FORGOT PASSWORD ACTIVITY -->
+    <string name="forgotpassword_activityname">Forgot your password?</string>
+    <string name="forgotpassword_shortdescription">Please enter your email address to request a password reset.</string>
+    <string name="forgotpassword_email_edittext">Email address</string>
+    <string name="forgotpassword_request_button">Reset Password</string>
+    <string name="forgotpassword_success_message">Successfully sent password reset email.</string>
+    <string name="forgotpassword_failed_message">Failed to send password reset email, is your email address right?</string>
+
+    <!-- VALIDATION ERRORS -->
+    <string name="invalid_emailaddress">Please enter a valid email address.</string>
+
 </resources>
