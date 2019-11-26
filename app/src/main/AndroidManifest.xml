@@ -26,7 +26,11 @@
             android:name=".activities.SignUpProfileActivity"
             android:theme="@style/AppTheme"
             android:label="@string/signup_activityname"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.SignInActivity" />
+        </activity>
         <activity android:name=".activities.DashboardActivity" />
         <activity
             android:name=".activities.SignInActivity"
