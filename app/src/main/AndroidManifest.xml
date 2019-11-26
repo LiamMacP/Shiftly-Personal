@@ -11,8 +11,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.SplashScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.Launcher"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activities.ForgotPasswordActivity"
             android:theme="@style/AppTheme.NoActionBar"
@@ -25,12 +30,9 @@
         <activity
             android:name=".activities.SignInActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:noHistory="true"
+        />
     </application>
 
 </manifest>
