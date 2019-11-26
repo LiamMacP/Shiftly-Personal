@@ -14,4 +14,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+    }
 }
