@@ -11,7 +11,7 @@ public class SignUpProfileActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_sign_up_profile);
 
         // Get a support ActionBar corresponding to this toolbar
         ActionBar actionBar = getSupportActionBar();
