@@ -21,8 +21,8 @@ import java.util.Objects;
 import apps.liamm.shiftlypersonal.R;
 
 import static android.view.WindowManager.LayoutParams;
-import static apps.liamm.shiftlypersonal.helpers.FormValidation.IsValidEmail;
-import static apps.liamm.shiftlypersonal.helpers.FormValidation.IsValidPassword;
+import static apps.liamm.shiftlypersonal.helpers.FormValidation.isValidEmail;
+import static apps.liamm.shiftlypersonal.helpers.FormValidation.isValidPassword;
 
 public class SignInActivity extends BaseActivity implements View.OnClickListener {
 
@@ -75,8 +75,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
      */
     private void showSignInUi() {
         mProgressBar.setVisibility(View.VISIBLE);
-        getWindow().setFlags(LayoutParams.FLAG_NOT_TOUCHABLE,
-                LayoutParams.FLAG_NOT_TOUCHABLE);
+        this.screenTouchable(false);
     }
 
     /**
@@ -85,7 +84,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
      */
     private void clearSignInUi() {
         mProgressBar.setVisibility(View.GONE);
-        getWindow().clearFlags(LayoutParams.FLAG_NOT_TOUCHABLE);
+        this.screenTouchable(true);
     }
 
     /**
@@ -97,7 +96,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
      * @return true if the email is valid, else false.
      */
     private boolean checkEmail(@NonNull final String emailAddress) {
-        if (!IsValidEmail(emailAddress)) {
+        if (!isValidEmail(emailAddress)) {
             mEmailEditText.setError(getString(R.string.invalid_emailaddress));
             return false;
         }
@@ -115,7 +114,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
      * @return true if the password is valid, else false.
      */
     private boolean checkPassword(@NonNull final String password) {
-        if (!IsValidPassword(password)) {
+        if (!isValidPassword(password)) {
             mPasswordEditView.setError(getString(R.string.signin_invalid_password));
             return false;
         }

@@ -2,7 +2,6 @@ package apps.liamm.shiftlypersonal.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -21,7 +20,7 @@ import java.util.Objects;
 import apps.liamm.shiftlypersonal.R;
 
 import static android.view.WindowManager.LayoutParams;
-import static apps.liamm.shiftlypersonal.helpers.FormValidation.IsValidEmail;
+import static apps.liamm.shiftlypersonal.helpers.FormValidation.isValidEmail;
 
 public class ForgotPasswordActivity extends BaseActivity implements View.OnClickListener {
 
@@ -83,8 +82,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
     private void showRequestUi() {
         mStatusTextView.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
-        getWindow().setFlags(LayoutParams.FLAG_NOT_TOUCHABLE,
-                LayoutParams.FLAG_NOT_TOUCHABLE);
+        this.screenTouchable(false);
     }
 
     /**
@@ -93,7 +91,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
      */
     private void clearRequestUi() {
         mProgressBar.setVisibility(View.GONE);
-        getWindow().clearFlags(LayoutParams.FLAG_NOT_TOUCHABLE);
+        this.screenTouchable(true);
         mStatusTextView.setVisibility(View.VISIBLE);
     }
 
@@ -106,7 +104,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
      * @return true if the email is valid, else false.
      */
     private boolean checkEmail(@NonNull final String emailAddress) {
-        if (!IsValidEmail(emailAddress)) {
+        if (!isValidEmail(emailAddress)) {
             mEmailEditText.setError(getString(R.string.invalid_emailaddress));
             return false;
         }

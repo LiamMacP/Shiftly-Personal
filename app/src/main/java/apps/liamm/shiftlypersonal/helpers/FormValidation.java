@@ -21,7 +21,7 @@ public final class FormValidation {
      * @param emailAddress the email address we want to check
      * @return true if the email is valid, else false.
      */
-    public static boolean IsValidEmail(@NonNull final String emailAddress) {
+    public static boolean isValidEmail(@NonNull final String emailAddress) {
         return Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches();
     }
 
@@ -37,7 +37,7 @@ public final class FormValidation {
      * @param password the password to check if valid or not.
      * @return true if the password is valid, else false.
      */
-    public static boolean IsValidPassword(@NonNull final String password) {
+    public static boolean isValidPassword(@NonNull final String password) {
         final String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*#?&]{8,}$";
 
         Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
