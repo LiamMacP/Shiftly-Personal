@@ -27,6 +27,7 @@ import static apps.liamm.shiftlypersonal.helpers.FormValidation.IsValidPassword;
 public class SignInActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = SignInActivity.class.getSimpleName();
+
     @VisibleForTesting
     protected ProgressBar mProgressBar;
     private TextInputEditText mEmailEditText;
@@ -36,7 +37,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin);
+        setContentView(R.layout.activity_sign_in);
 
         mEmailEditText = findViewById(R.id.signin_email_edittext);
         mPasswordEditView = findViewById(R.id.signin_password_edittext);
@@ -133,7 +134,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         switch (v.getId()) {
             case R.id.signin_signup_button:
                 final Intent signUpIntent =
-                        new Intent(SignInActivity.this, SignUpActivity.class);
+                        new Intent(SignInActivity.this, SignUpProfileActivity.class);
                 signUpIntent.putExtra("EMAIL",
                         Objects.requireNonNull(mEmailEditText.getText()).toString());
                 startActivity(signUpIntent);
