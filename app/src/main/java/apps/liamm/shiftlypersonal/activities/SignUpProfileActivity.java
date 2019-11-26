@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import apps.liamm.shiftlypersonal.R;
 
-public class SignUpActivity extends BaseActivity {
+public class SignUpProfileActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

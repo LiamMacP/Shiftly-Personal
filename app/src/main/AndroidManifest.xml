@@ -14,8 +14,9 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
-            android:name=".activities.SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".activities.SignUpProfileActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/signup_activityname"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity android:name=".activities.DashboardActivity" />
         <activity
